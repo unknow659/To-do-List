@@ -54,31 +54,52 @@ int main() {
     int choice;
 cout<<"-------------To do list Menu---------------"<<endl;
     do {
-        cout << "\n1. Add Task";
-        cout << "\n2. Show Tasks";
+    cout << "\n1. Add Task";
+    cout << "\n2. Show Tasks";
+
+    if (!task.empty()) {
         cout << "\n3. Complete Task";
         cout << "\n4. Delete Task";
-        cout << "\n5. Exit";
-        cout << "\nEnter Choice: ";
-        cin >> choice;
+    }
 
-        switch (choice) {
-            case 1: addTask(); 
-            break;
-            case 2: showTask(); 
-            break;
-            case 3: completeTask(); 
-            break;
-            case 4: deleteTask();
-             break;
-            case 5: cout << "Goodbye!\n"; 
-            break;
-            default: cout << "Invalid Choice\n";
-        }
-        
-        cout<<"-------------------------------------"<<endl;
+    cout << "\n5. Exit";
+    cout << "\nEnter Choice: ";
+    cin >> choice;
 
-    } while (choice != 5);
+    switch (choice) {
+        case 1:
+            addTask();
+            break;
 
-    return 0;
+        case 2:
+            showTask();
+            break;
+
+        case 3:
+            if (!task.empty())
+                completeTask();
+            else
+                cout << "Please add a task first!\n";
+            break;
+
+        case 4:
+            if (!task.empty())
+                deleteTask();
+            else
+                cout << "Please add a task first!\n";
+            break;
+
+        case 5:
+            cout << "Goodbye!\n";
+            break;
+
+        default:
+            cout << "Invalid Choice\n";
+    }
+
+    cout << "-------------------------------------" << endl;
+
+} while (choice != 5);
+
+return 0;
 }
